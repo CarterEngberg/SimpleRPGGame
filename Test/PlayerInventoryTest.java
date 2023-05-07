@@ -112,7 +112,7 @@ class PlayerInventoryTest {
         PlayerItem baton = new PlayerItem("Baton", 3, " ", 500);
         PlayerItem gun = new PlayerItem("Gun", 3, " ", 1000);
         PlayerItem jacket = new PlayerItem("Jacket", 3, " ", 500);
-
+        float dollars = inventory.getAmountOfMoney();
 
         inventory.addItem(scarf);
         inventory.addItem(baton);
@@ -120,12 +120,18 @@ class PlayerInventoryTest {
         inventory.addItem(jacket);
 
         inventory.printInventoryItems();
+
         inventory.sellItem(2);
+        dollars = inventory.getAmountOfMoney();
         inventory.printDollarieDoosAmount();
         inventory.printInventoryItems();
+        Assert.assertEquals(1000.0, dollars, .0);
+
         inventory.sellItem(0);
+        dollars = inventory.getAmountOfMoney();
         inventory.printDollarieDoosAmount();
         inventory.printInventoryItems();
+        Assert.assertEquals(1250.0, dollars, .0);
 
     }
 }

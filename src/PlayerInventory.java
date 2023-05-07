@@ -93,6 +93,10 @@ public class PlayerInventory {
                 System.out.println();
         }
 
+        float getAmountOfMoney() {
+                return dollarieDoos;
+        }
+
         /**
          *  Sell any item in your inventory and give the player the according value
          *
