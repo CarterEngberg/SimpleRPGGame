@@ -33,10 +33,11 @@ class PlayerInventoryTest {
     void displayingItems() {
         PlayerInventory inventory = new PlayerInventory();
 
-        PlayerItem scarf = new PlayerItem("Scarf", 3, " ");
-        PlayerItem baton = new PlayerItem("Baton", 3, " ");
-        PlayerItem gun = new PlayerItem("Gun", 3, " ");
-        PlayerItem jacket = new PlayerItem("Jacket", 3, " ");
+        PlayerItem scarf = new PlayerItem("Scarf", 3, " ", 250);
+        PlayerItem baton = new PlayerItem("Baton", 3, " ", 500);
+        PlayerItem gun = new PlayerItem("Gun", 3, " ", 1000);
+        PlayerItem jacket = new PlayerItem("Jacket", 3, " ", 500);
+
 
         inventory.addItem(scarf);
         inventory.addItem(baton);
@@ -47,7 +48,7 @@ class PlayerInventoryTest {
     }
 
     @Test
-    void sortingItems() {
+    void swappingItems() {
 
         // Before Swap {Scarf, Baton, Gun, Jacket}
         // Swap1       {Scarf, Jacket, Gun, Baton}
@@ -55,10 +56,11 @@ class PlayerInventoryTest {
 
         PlayerInventory inventory = new PlayerInventory();
 
-        PlayerItem scarf = new PlayerItem("Scarf", 3, " ");
-        PlayerItem baton = new PlayerItem("Baton", 3, " ");
-        PlayerItem gun = new PlayerItem("Gun", 3, " ");
-        PlayerItem jacket = new PlayerItem("Jacket", 3, " ");
+        PlayerItem scarf = new PlayerItem("Scarf", 3, " ", 250);
+        PlayerItem baton = new PlayerItem("Baton", 3, " ", 500);
+        PlayerItem gun = new PlayerItem("Gun", 3, " ", 1000);
+        PlayerItem jacket = new PlayerItem("Jacket", 3, " ", 500);
+
 
         inventory.addItem(scarf);
         inventory.addItem(baton);
@@ -81,10 +83,10 @@ class PlayerInventoryTest {
 
         PlayerInventory inventory = new PlayerInventory();
 
-        PlayerItem scarf = new PlayerItem("Scarf", 3, " ");
-        PlayerItem baton = new PlayerItem("Baton", 3, " ");
-        PlayerItem gun = new PlayerItem("Gun", 3, " ");
-        PlayerItem jacket = new PlayerItem("Jacket", 3, " ");
+        PlayerItem scarf = new PlayerItem("Scarf", 3, " ", 250);
+        PlayerItem baton = new PlayerItem("Baton", 3, " ", 500);
+        PlayerItem gun = new PlayerItem("Gun", 3, " ", 1000);
+        PlayerItem jacket = new PlayerItem("Jacket", 3, " ", 500);
 
         inventory.addItem(scarf);
         inventory.addItem(baton);
@@ -94,5 +96,36 @@ class PlayerInventoryTest {
         inventory.printInventoryItems();
         inventory.removeItem(2);
         inventory.printInventoryItems();
+    }
+
+
+    @Test
+    void sellItems() {
+        // Expected Output
+        // Before Removal {Scarf, Baton, Gun, Jacket}
+        // After 1st Item Sold {Scarf, Baton, Jacket} (1k total $)
+        // After 2nd Item Sold {Baton, Jacket} (1.25k total $)
+
+        PlayerInventory inventory = new PlayerInventory();
+
+        PlayerItem scarf = new PlayerItem("Scarf", 3, " ", 250);
+        PlayerItem baton = new PlayerItem("Baton", 3, " ", 500);
+        PlayerItem gun = new PlayerItem("Gun", 3, " ", 1000);
+        PlayerItem jacket = new PlayerItem("Jacket", 3, " ", 500);
+
+
+        inventory.addItem(scarf);
+        inventory.addItem(baton);
+        inventory.addItem(gun);
+        inventory.addItem(jacket);
+
+        inventory.printInventoryItems();
+        inventory.sellItem(2);
+        inventory.printDollarieDoosAmount();
+        inventory.printInventoryItems();
+        inventory.sellItem(0);
+        inventory.printDollarieDoosAmount();
+        inventory.printInventoryItems();
+
     }
 }

@@ -4,9 +4,10 @@ import java.util.List;
 public class PlayerInventory {
 
         private List<PlayerItem> playerInventory = new ArrayList<>();
+        float dollarieDoos;
 
         public PlayerInventory() {
-
+                dollarieDoos = 0.0f;
         }
 
 
@@ -36,7 +37,9 @@ public class PlayerInventory {
         void printInventoryItems() {
                 for (PlayerItem item : playerInventory) {
                         String itemName = item.nameOfItem;
-                        System.out.println(itemName + " ");
+                        int statBuff = item.statBuff;
+                        float amount = item.amountItemIsWorth;
+                        System.out.println(itemName + " " + statBuff + " " + amount);
                 }
                 System.out.println();
         }
@@ -61,6 +64,43 @@ public class PlayerInventory {
          */
         void removeItem(int indexOfItem) {
                 playerInventory.remove(indexOfItem);
+        }
+
+        /**
+         *  Sets the amount of money the player has to their
+         *  current amount + amount of item they are replacing.
+         *
+         * @param dollarieDoos The amount of money the item you are selling is worth
+         */
+        void setTotalAmountOfMoney(float dollarieDoos) {
+                this.dollarieDoos += dollarieDoos;
+        }
+
+
+        /**
+         *  Gets the amount of the item at the given index.
+         *
+         * @param index The index of the item the player needs to find out how much it is worth
+         * @return The amount the item is worth
+         */
+        float getAmountItemIsWorth(int index) { return playerInventory.get(index).amountItemIsWorth ; }
+
+        /**
+         * Prints out the amount of money the player has
+         */
+        void printDollarieDoosAmount() {
+                System.out.println("You have " + dollarieDoos);
+                System.out.println();
+        }
+
+        /**
+         *  Sell any item in your inventory and give the player the according value
+         *
+         * @param index The index of the item you are wanting to sell
+         */
+        void sellItem(int index) {
+                setTotalAmountOfMoney(getAmountItemIsWorth(index));
+                playerInventory.remove(index);
         }
 
 }
