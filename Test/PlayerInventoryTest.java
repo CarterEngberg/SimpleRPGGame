@@ -71,4 +71,28 @@ class PlayerInventoryTest {
         inventory.swapItems(0, 2);
         inventory.printInventoryItems();
     }
+
+    @Test
+    void removingItems() {
+
+        // Expected Output
+        // Before Removal {Scarf, Baton, Gun, Jacket}
+        // After Removal {Scarf, Baton, Jacket}
+
+        PlayerInventory inventory = new PlayerInventory();
+
+        PlayerItem scarf = new PlayerItem("Scarf", 3, " ");
+        PlayerItem baton = new PlayerItem("Baton", 3, " ");
+        PlayerItem gun = new PlayerItem("Gun", 3, " ");
+        PlayerItem jacket = new PlayerItem("Jacket", 3, " ");
+
+        inventory.addItem(scarf);
+        inventory.addItem(baton);
+        inventory.addItem(gun);
+        inventory.addItem(jacket);
+
+        inventory.printInventoryItems();
+        inventory.removeItem(2);
+        inventory.printInventoryItems();
+    }
 }

@@ -9,6 +9,7 @@ public class PlayerInventory {
 
         }
 
+
         /**
          * Simple function to add the item into the inventory.
          *
@@ -18,6 +19,7 @@ public class PlayerInventory {
             playerInventory.add(item);
         }
 
+
         /**
          * Getter for number of items in the inventory.
          *
@@ -26,6 +28,7 @@ public class PlayerInventory {
         int getNumberOfItems() {
                 return playerInventory.size();
         }
+
 
         /**
          * Function to print out the items of the inventory.
@@ -49,7 +52,15 @@ public class PlayerInventory {
                 PlayerItem temp = playerInventory.get(index1);
                 playerInventory.set(index1, playerInventory.get(index2));
                 playerInventory.set(index2, temp);
+        }
 
+        /**
+         *  Removes item of a specified index from the inventory.
+         *
+         * @param indexOfItem The index of the item to be removed.
+         */
+        void removeItem(int indexOfItem) {
+                playerInventory.remove(indexOfItem);
         }
 
 }
